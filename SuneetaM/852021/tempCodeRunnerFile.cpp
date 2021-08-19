@@ -1,0 +1,1 @@
+cout << c3.feet << " " << c3.inches << endl;

@@ -1,0 +1,1 @@
+ Sdetail(arr, i);
