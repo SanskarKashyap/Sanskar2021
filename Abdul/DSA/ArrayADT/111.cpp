@@ -33,6 +33,13 @@ int CSort(Array &arr)
     cout << "true ";
     return 1;
 }
+void append(struct Array *arr, int x)
+{
+    if (arr->length < arr->size)
+    {
+        arr->A[arr->length++] = x;
+    }
+}
 void display(Array &arr)
 {
     for (int i = 0; i < arr.length; i++)
