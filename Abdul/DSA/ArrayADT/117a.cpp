@@ -254,7 +254,7 @@ int main()
         default:
             break;
         }
-        // fflush(stdin);
+        fflush(stdin);
     } while (ch < 10);
 
     // struct Array arr = {{4, 6, 9, 13, 17, 25, 67}, 10, 6};
