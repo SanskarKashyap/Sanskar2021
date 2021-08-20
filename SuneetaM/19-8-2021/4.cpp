@@ -87,8 +87,8 @@ int main()
         cout << "\n\n Menu \n"
              << "1. Deposit money\n"
              << "2. Withdraw money\n"
-             << "3. Exit\n"
-             << "4. Account Detail\n"
+             << "3. Account Detail\n"
+             << "4. Exit\n"
              << "\nEnter your Option : ";
         cin >> in;
 

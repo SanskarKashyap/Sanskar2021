@@ -1,63 +1,33 @@
+// 1. wap to calculate area of a triangle using default and actual values where the formula
+// is 1/2 x l x b.
+
 #include <iostream>
 using namespace std;
-#include <conio.h>
-#include <string.h>
-class bank
+
+class triangle
 {
-    char name[20];
-    int ano;
-    char atype[20];
-    float bal;
+private:
+    int l;
+    int b;
 
 public:
-    void get(int no, char *n, char *t, float b)
+    triangle(int len = 0, int wid = 0)
     {
-        strcpy(name, n);
-        ano = no;
-        strcpy(atype, t);
-        bal = b;
+        l = len;
+        b = wid;
     }
-    float deposit()
+    void area()
     {
-        float amt;
-        cout << "\nEnter amount: ";
-        cin >> amt;
-        bal = bal + amt;
-        return bal;
-    }
-    float withdrw()
-    {
-        float amt;
-        cout << "\nHow many Rupees withdraw:";
-        cin >> amt;
-        bal = bal - amt;
-        return bal;
-    }
-    void disp()
-    {
-        cout << "\n\nAccount number: " << ano;
-        cout << "\n\nName: " << name;
-        cout << "\n\nAccount type: " << atype;
-        cout << "\n\nDeposit Amount: " << deposit();
-        cout << "\n\nAfter Withdraw Amount balnace: " << withdrw();
+        cout << "Area of triangleis : " << l * b * 0.5;
     }
 };
+
 int main()
 {
-    int n;
-    char nm[20], t[20];
-    float a;
-    bank bk;
-
-    cout << "\nEnter Account no.: ";
-    cin >> n;
-    cout << "\nEnter Name: ";
-    cin >> nm;
-    cout << "\nEnter account type: ";
-    cin >> t;
-    cout << "\nEnter balance amount: ";
-    cin >> a;
-    bk.get(n, nm, t, a);
-    bk.disp();
-    getch();
+    int a, b;
+    cout << " Enter l and b of triangle ";
+    cin >> a >> b;
+    triangle tr(a, b);
+    tr.area();
+    return 0;
 }
