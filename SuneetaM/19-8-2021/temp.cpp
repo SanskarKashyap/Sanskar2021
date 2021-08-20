@@ -1,60 +1,94 @@
 
-// 4. wap to define a class to represent a bank acount include the following members <.i.> name of depositor <.ii.> acount number <.iii.> 
-// type of acount 
-//  	<.iv.> balance amount in the acount 
+// 4. wap to define a class to represent a bank acount include the following members <.i.> name of depositor <.ii.> acount number <.iii.>
+// type of acount
+//  	<.iv.> balance amount in the acount
 // 	member function are:
 // 		1. to assign initial values
 // 		2. to sepodit an amount
 // 		3. to withdraw an amount after checking the balance
 // 		4. to diplay name and balance
 
-
 #include <iostream>
 using namespace std;
-class student
+#include <conio.h>
+#include <string.h>
+class bank
 {
-private:
-    int yoa, yop;
+    char name[20];
+    int ano;
+    char atype[20];
+    float bal;
 
 public:
-    void get(int mks[], int n);
-    void avg(int mks[], int n);
+    void get(int no, char *n, char *t, float b)
+    {
+        strcpy(name, n);
+        ano = no;
+        strcpy(atype, t);
+        bal = b;
+    }
+    float deposit()
+    {
+        float amt;
+        cout << "\nDeposit Amount to your Account : ";
+        cin >> amt;
+        bal = bal + amt;
+        return bal;
+    }
+    void withdrw()
+    {
+        float amt;
+        cout << "\nWithdraw Amount:";
+        cin >> amt;
+        bal = bal - amt;
+        if (bal > 0)
+        {
+            cout << bal;
+        }
+        else
+            cout << "\nInsuffient Amount in your Account";
+    }
+    void disp()
+    {
+        cout << "\n\nAccount number: " << ano;
+        cout << "\n\nName: " << name;
+        cout << "\n\nAccount type: " << atype;
+        // cout << "\n\nDeposit Amount to your Account : " << deposit();
+        // cout << "\n\nAfter Withdraw Amount balnace: ";
+        // withdrw();
+    }
 };
-
-void student::get(int mks[], int n)
-{
-    cout << "Enter year of admission: ";
-    cin >> yoa;
-    cout << "Enter year of passout: ";
-    cin >> yop;
-    for (int i = 1; i <= n; i++)
-    {
-        cout << "Enter marks of " << i << " Subject: " << endl;
-        cin >> mks[i - 1];
-    }
-}
-
-void student::avg(int mks[], int n)
-{
-
-    int avg = 0;
-    for (int i = 1; i <= n; i++)
-    {
-        avg = avg + mks[i - 1];
-    }
-    cout << "Average marks of student in " << yoa << "--" << yop << " is : " << avg / n << endl;
-}
 int main()
 {
-    student s;
-    cout << "Enter no of subjects: ";
     int n;
-    cin >> n;
-    int *mks;
-    mks = new int[n];
-    // int mks[n];
-    s.get(mks, n);
-    s.avg(mks, n);
+    char nm[20], t[20];
+    float a;
+    bank bk;
 
-    return 0;
+    cout << "\nEnter Account no.: ";
+    cin >> n;
+    cout << "\nEnter Name: ";
+    cin >> nm;
+    cout << "\nEnter account type: ";
+    cin >> t;
+    cout << "\nEnter balance amount: ";
+    cin >> a;
+    bk.get(n, nm, t, a);
+    cout << "\n Menu \n"
+         << "1. Deposit money\n "
+         << "2. Withdraw money\n";
+
+    int it;
+    switch (it)
+    {
+    case 1:
+        bk.deposit();
+        break;
+    case 2:
+        bk.withdrw();
+        break;
+
+    default:
+        break;
+    }
 }

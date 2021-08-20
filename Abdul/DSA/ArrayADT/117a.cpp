@@ -173,12 +173,12 @@ void display(Array &arr)
 }
 int main()
 {
+    int n, ch, b, a;
     struct Array arr;
     cout << "Enter the size of Array : ";
-    int n, ch, b, a;
     cin >> arr.size;
-    arr.length = arr.size;
-    cout << arr.length << endl;
+    cout << "Enter the length of Array : ";
+    cin >> arr.length;
 
     arr.A = new int[arr.size];
     for (int i = 0; i < arr.length; i++)

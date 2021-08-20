@@ -14,81 +14,100 @@ using namespace std;
 #include <string.h>
 class bank
 {
-    char name[20];
-    int ano;
-    char atype[20];
-    float bal;
+    string name;
+    long long AcntNo;
+    string AcntType;
+    double balance;
 
 public:
-    void get(int no, char *n, char *t, float b)
+    bank() {}
+
+    bank(string na, int acno, string aty, float bal)
     {
-        strcpy(name, n);
-        ano = no;
-        strcpy(atype, t);
-        bal = b;
+        name = na;
+        AcntNo = acno;
+        AcntType = aty;
+        balance = bal;
     }
-    float deposit()
+    void setname(string na) { name = na; }
+    void setacno(int acno) { AcntNo = acno; }
+    void setaty(string aty) { AcntType = aty; }
+    void setbal(float bal) { balance = bal; }
+    float getbal() { return balance; }
+
+    double deposit()
     {
-        float amt;
+        double amt;
         cout << "\nDeposit Amount to your Account : ";
         cin >> amt;
-        bal = bal + amt;
-        return bal;
+        balance = balance + amt;
+        return balance;
     }
     void withdrw()
     {
-        float amt;
-        cout << "\nWithdraw Amount:";
+        double amt;
+        cout << "\nWithdraw Amount : ";
         cin >> amt;
-        bal = bal - amt;
-        if (bal > 0)
+        balance = balance - amt;
+        if (balance > 0)
         {
-            cout << bal;
+            cout << balance;
         }
         else
-            cout << "\nInsuffient Amount in your Account";
+            cout << "\nInsuffient Amount in your Account !! ";
     }
     void disp()
     {
-        cout << "\n\nAccount number: " << ano;
-        cout << "\n\nName: " << name;
-        cout << "\n\nAccount type: " << atype;
-        // cout << "\n\nDeposit Amount to your Account : " << deposit();
-        // cout << "\n\nAfter Withdraw Amount balnace: ";
-        // withdrw();
+        cout << "\nAccount number : " << AcntNo;
+        cout << "\nName : " << name;
+        cout << "\nAccount type : " << AcntType;
+        cout << "\nAmount in your Account : " << balance;
     }
 };
 int main()
 {
-    int n;
-    char nm[20], t[20];
-    float a;
-    bank bk;
+    string a, b;
+    long long x;
+    double y;
 
-    cout << "\nEnter Account no.: ";
-    cin >> n;
-    cout << "\nEnter Name: ";
-    cin >> nm;
-    cout << "\nEnter account type: ";
-    cin >> t;
-    cout << "\nEnter balance amount: ";
+    cout << "\nEnter Account number : ";
+    cin >> x;
+    cout << "\nEnter Name : ";
     cin >> a;
-    bk.get(n, nm, t, a);
-    cout << "\n Menu \n"
-         << "1. Deposit money\n "
-         << "2. Withdraw money\n";
-
-    int it;
-    switch (it)
+    fflush(stdin);
+    cout << "\nEnter account type : ";
+    cin >> b;
+    cout << "\nEnter balance amount : ";
+    cin >> y;
+    bank bk(a, x, b, y);
+    int in;
+    do
     {
-    case 1:
-        bk.deposit();
-        break;
-    case 2:
-        bk.withdrw();
-        break;
 
-    default:
-        break;
-    }
+        cout << "\n\n Menu \n"
+             << "1. Deposit money\n"
+             << "2. Withdraw money\n"
+             << "3. Exit\n"
+             << "4. Account Detail\n"
+             << "\nEnter your Option : ";
+        cin >> in;
+
+        switch (in)
+        {
+        case 1:
+            bk.deposit();
+            cout << "\nBalance in yr account : " << bk.getbal();
+            break;
+        case 2:
+            bk.withdrw();
+            break;
+        case 3:
+            bk.disp();
+            break;
+
+        default:
+            break;
+        }
+    } while (in < 4);
+    return 0;
 }
