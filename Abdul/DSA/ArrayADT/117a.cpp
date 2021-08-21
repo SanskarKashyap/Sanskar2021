@@ -7,18 +7,24 @@ struct Array
     int size;
     int length;
 };
+
 void insert(struct Array &arr, int index, int b)
 {
     if (index >= 0 && index <= arr.length)
     {
 
-        for (int i = arr.length; i >= index; i--)
+        for (int i = arr.length; i > index; i--) //changes
             arr.A[i] = arr.A[i - 1];
         arr.A[index] = b;
-        arr.length++;
+        if (arr.length < arr.size)
+        {
+            arr.length++;
+        }
     }
+
     cout << index << " / " << arr.A[index];
 }
+
 void append(struct Array *arr, int x)
 {
     if (arr->length < arr->size)
@@ -26,22 +32,32 @@ void append(struct Array *arr, int x)
         arr->A[arr->length++] = x;
     }
 }
+
 void Delete(int index, Array &ar)
 {
-    cout << " \n"
-         << ar.A[index] << " is deleted " << endl;
-    if (index > 0 && index < ar.length)
+
+    if (index >= 0 && index < ar.length) //changes
     {
-        for (int i = index; i < ar.length; i++)
+
+        cout << " \n"
+             << ar.A[index] << " is deleted " << endl;
+        for (int i = index; i < ar.length - 1; i++) //changes
         {
             ar.A[i] = ar.A[i + 1];
         }
     }
     ar.length--;
 }
-int BinerySearch(int low, int high, int key, Array &arr)
+
+int BinerySearch(int key, Array &arr)
 {
-    int mid;
+    int mid, low = 0;
+    int i = arr.length - 1;
+    while (arr.A[i] == 0)
+    {
+        i--;
+    }
+    int high = i + 1;
     while (low <= high)
     {
         int mid = (low + high) / 2;
@@ -58,34 +74,41 @@ int BinerySearch(int low, int high, int key, Array &arr)
     }
     return -1;
 }
+
 int RBinerySearch(int low, int high, int key, Array const &arr)
 {
+    int mid;
+
     if (low <= high)
     {
+        cout << low << " " << high << " " << mid;
         int mid = (low + high) / 2;
         if (key == arr.A[mid])
         {
             return mid;
         }
         else if (key < arr.A[mid])
-            return RBinerySearch(low, mid - 1, 25, arr);
+            return RBinerySearch(low, mid - 1, key, arr); //changes
         else
-            return RBinerySearch(mid + 1, high, 25, arr);
+            return RBinerySearch(mid + 1, high, key, arr); //changes
     }
     return -1;
 }
+
 int get(int i, Array arr)
 {
     return arr.A[i];
 }
+
 void set(int i, int x, Array &arr)
 {
     arr.A[i] = x;
 }
+
 int Max(Array &arr)
 {
     int max = arr.A[0];
-    for (int i = 0; i <= arr.length; i++)
+    for (int i = 0; i < arr.length; i++) //changes
     {
 
         if (max < arr.A[i])
@@ -95,10 +118,11 @@ int Max(Array &arr)
     }
     return max;
 }
+
 int Min(Array arr)
 {
     int min = arr.A[0];
-    for (int i = 0; i <= arr.length; i++)
+    for (int i = 0; i < arr.length; i++) //changes
     {
         if (min > arr.A[i])
         {
@@ -107,49 +131,37 @@ int Min(Array arr)
     }
     return min;
 }
+
 int Sum(Array &arr)
 {
     int sum = 0;
-    for (int i = 0; i <= arr.length; i++)
+    for (int i = 0; i < arr.length; i++) //changes
     {
         sum = sum + arr.A[i];
-        // cout << sum << " ";
     }
     return sum;
 }
-void reverse(Array &arr)
-{
-    int *b;
-    b = new int[arr.length];
 
-    for (int i = 0; i < arr.length; i++)
-    {
-        b[i] = arr.A[arr.length - 1 - i];
-    }
-    for (int i = 0; i < arr.length; i++)
-    {
-        arr.A[i] = b[i];
-    }
-}
-void reverse2(Array *arr)
-{
-    for (int i = 0, j = arr->length - 1; i < j; i++, j--)
-    {
-        swap(arr->A[i], arr->A[j]);
-    }
-}
-void Sinsert(int a, Array &arr)
+void Sinsert(int key, Array &arr)
 {
     int i = arr.length - 1;
+    while (arr.A[i] == 0) ////changes
+    {
+        i--;
+    } 
 
-    while (a < arr.A[i])
+    while (i >= 0 && key < arr.A[i]) //changes
     {
         arr.A[i + 1] = arr.A[i];
         i--;
     }
-    arr.A[i + 1] = a;
-    arr.length++;
+    arr.A[i + 1] = key;
+    if (arr.length < arr.size)
+    {
+        arr.length++;
+    }
 }
+
 int CSort(Array &arr)
 {
     for (int i = 0; i < arr.length - 1; i++)
@@ -163,6 +175,7 @@ int CSort(Array &arr)
     cout << "true ";
     return 1;
 }
+
 void display(Array &arr)
 {
     for (int i = 0; i < arr.length; i++)
@@ -171,6 +184,7 @@ void display(Array &arr)
     }
     cout << endl;
 }
+
 int main()
 {
     int n, ch, b, a;
@@ -220,13 +234,13 @@ int main()
             cout << "Enter an element to BinerySearch : ";
             int a;
             cin >> a;
-            BinerySearch(0, arr.length, a, arr);
+            cout << BinerySearch(a, arr) << endl; //changes
             break;
         case 4:
             cout << "Enter an element to RBinerySearch : ";
             // int a;
             cin >> a;
-            RBinerySearch(0, arr.length, a, arr);
+            cout << RBinerySearch(0, arr.length - 1, a, arr) << endl; //changes
             break;
         case 5:
             cout << "Sum of all the Element in the array : ";
@@ -256,21 +270,6 @@ int main()
         }
         fflush(stdin);
     } while (ch < 10);
-
-    // struct Array arr = {{4, 6, 9, 13, 17, 25, 67}, 10, 6};
-    // cout << BinerySearch(0, arr.length, 25, arr) << endl;
-    // cout << RBinerySearch(0, arr.length, 25, arr) << endl;
-    // cout << Max(arr) << endl;
-    // cout << Min(arr) << endl;
-    // cout << Sum(arr) << endl;
-    // cout << Sum(arr) / arr.length << endl;
-    // display(arr);
-    // reverse(arr);
-    // display(arr);
-    // reverse2(&arr);
-    // display(arr);
-    // Sinsert(23, arr);
-    // display(arr);
 
     return 0;
 }
