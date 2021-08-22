@@ -50,6 +50,6 @@ int main()
     set(m, 4, 4, 43);
     cout << get(m, 4, 4) << endl;
     print(m);
-    // ~Matrix;
+    delete[] m.A;
     return 0;
 }

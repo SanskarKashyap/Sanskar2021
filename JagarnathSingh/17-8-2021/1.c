@@ -3,16 +3,14 @@
 
 void printPoly(int poly[], int n)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = n; i >= 0; i--)
     {
-        // cout << n << " " << i << endl;
         printf("%d", poly[i]);
 
         if (i != 0)
-            printf("x^%d", i);
-
-        if (i != n - 1)
-            printf(" + ");
+            printf("x^%d + ", i);
+        else
+            printf(" ");
     }
 }
 
@@ -23,14 +21,13 @@ int main()
     scanf("%d", &n);
     int *A;
     A = (int *)malloc(n * sizeof(int));
+    printf(" Start entering the coefficient from the smallest degree : ");
     for (int i = 0; i <= n; i++)
     {
         scanf("%d", &A[i]);
     }
-    int m = sizeof(A) / sizeof(A[0]);
-
     printf("Polynomial is \n ");
-    printPoly(A, m+1);
+    printPoly(A, n);
 
     return 0;
 }

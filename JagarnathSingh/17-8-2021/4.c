@@ -1,42 +1,64 @@
 #include <stdio.h>
+#define MAX 20
+
+void read_matrix(int a[10][10], int row, int column);
+void print_sparse(int b[MAX][3]);
+void create_sparse(int a[10][10], int row, int column, int b[MAX][3]);
+
 int main()
 {
-    int S[10][10], m, n, i, k = 0, size = 0;
-    printf("Enter number of rows in the matrix : ");
-    scanf("%d", &m);
-    printf("Enter number of columns in the matrix : ");
-    scanf("%d", &n);
-    printf("Enter elements in the matrix : ");
-    for (int i = 0; i < m; i++)
-        for (int j = 0; j < n; j++)
-            scanf("%d", &S[i][j]);
-    printf("The matrix is \n");
-    for (int i = 0; i < m; i++)
+    int a[10][10], b[MAX][3], row, column;
+    printf("\nEnter the size of matrix (rows, columns): ");
+    scanf("%d%d", &row, &column);
+    read_matrix(a, row, column);
+    create_sparse(a, row, column, b);
+    print_sparse(b);
+    return 0;
+}
+void read_matrix(int a[10][10], int row, int column)
+{
+    int i, j;
+    printf("\nEnter elements of matrix\n");
+    for (i = 0; i < row; i++)
     {
-        for (int j = 0; j < n; j++)
+        for (j = 0; j < column; j++)
         {
-            printf(" %d ", S[i][j]);
-            if (S[i][j] != 0)
-                size++;
+            printf("[%d][%d]: ", i, j);
+            scanf("%d", &a[i][j]);
         }
-        printf("\n");
     }
-    int M[3][size];
-    for (int i = 0; i < m; i++)
-        for (int j = 0; j < n; j++)
-            if (S[i][j] != 0)
+}
+
+void create_sparse(int a[10][10], int row, int column, int b[MAX][3])
+{
+    int i, j, k;
+    k = 1;
+    b[0][0] = row;
+    b[0][1] = column;
+    for (i = 0; i < row; i++)
+
+    {
+        for (j = 0; j < column; j++)
+        {
+            if (a[i][j] != 0)
             {
-                M[0][k] = i;
-                M[1][k] = j;
-                M[2][k] = S[i][j];
+                b[k][0] = i;
+                b[k][1] = j;
+                b[k][2] = a[i][j];
                 k++;
             }
-    printf("Triplet representation of the matrix is \n");
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < size; j++)
-            printf(" %d ", M[i][j]);
-        printf("\n");
+        }
+        b[0][2] = k - 1;
     }
-    return 0;
+}
+
+void print_sparse(int b[MAX][3])
+{
+    int i, column;
+    column = b[0][2];
+    printf("\nSparse form - list of 3 triples\n\n");
+    for (i = 0; i <= column; i++)
+    {
+        printf("%d\t%d\t%d\n", b[i][0], b[i][1], b[i][2]);
+    }
 }
