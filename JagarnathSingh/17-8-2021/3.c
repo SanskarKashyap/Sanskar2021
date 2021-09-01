@@ -1,56 +1,55 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <conio.h>
+
+struct poly
+{
+    int degree;
+    int coeff;
+};
+
 void main()
 {
-    int i, j, size1, size2;
-    printf("Enter number of terms in Polynomial 1\n");
-    scanf("%d", &size1);
-    printf("Enter number of terms in Polynomial 2\n");
-    scanf("%d", &size2);
-
-    // int a[size1], b[size2], prod[size1 + size2];
-    int *a, *b, *prod;
-    a = (int *)malloc(size1 * sizeof(int));
-    b = (int *)malloc(size2 * sizeof(int));
-    prod = (int *)malloc((size1 + size2) * sizeof(int));
-    printf("Enter Elements of Polynomial 1\n");
-    for (i = 0; i < size1; i++)
+    struct poly poly1[10], poly2[10], product[100];
+    int noOfTerms1, noOfTerms2, count = -1;
+    int i, j;
+    printf("\nEnter Number Of Terms Of 1st Polynomial: ");
+    scanf("%d", &noOfTerms1);
+    for (i = 0; i < noOfTerms1; i++)
     {
-        printf("Enter x^%d Co-Efficient of Polynomial 1\n", i);
-        scanf("%d", &a[i]);
+        printf("\nEnter Degree: ");
+        scanf("%d", &poly1[i].degree);
+        printf("\nEnter Coefficient: ");
+        scanf("%d", &poly1[i].coeff);
     }
-
-    printf("Enter Elements of Polynomial 2\n");
-    for (i = 0; i < size2; i++)
+    printf("\nEnter Number Of Terms Of 2nd Polynomial: ");
+    scanf("%d", &noOfTerms2);
+    for (i = 0; i < noOfTerms2; i++)
     {
-        printf("Enter x^%d Co-Efficient of Polynomial 2\n", i);
-        scanf("%d", &b[i]);
+        printf("\nEnter Degree: ");
+        scanf("%d", &poly2[i].degree);
+        printf("\nEnter Coefficient: ");
+        scanf("%d", &poly2[i].coeff);
     }
-    for (i = 0; i < size1 + size2; i++)
+    for (i = 0; i < noOfTerms1; i++)
     {
-        prod[i] = 0;
-    }
-
-    for (i = 0; i < size1; i++)
-    {
-        for (j = 0; j < size2; j++)
+        for (j = 0; j < noOfTerms2; j++)
         {
-            if (a[i] != 0 && b[j] != 0)
-                prod[i + j] += a[i] * b[j];
+            product[++count].degree = poly1[i].degree + poly2[j].degree;
+            product[count].coeff = poly1[i].coeff * poly2[j].coeff;
         }
     }
-    for (i = size1 + size2 - 1; i >= 0; i--)
+    printf("\nThe Product Of Two Polynomials Is: \n");
+    for (i = 0; i <= count; i++)
     {
-        if (prod[i] != 0)
+        if (product[i].degree == 0)
+            printf("%d ", product[i].coeff);
+        else if (product[i].degree == 1)
+            printf("%dx ", product[i].coeff);
+        else
         {
-            if (i != 0)
-            {
-                printf("%d x^%d + ", prod[i], i);
-            }
-            else
-            {
-                printf("%d x^%d\n", prod[i], i);
-            }
+            printf("%dx^%d ", product[i].coeff, product[i].degree);
         }
+        if (i != count)
+            printf("+ ");
     }
 }

@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 int Max(int m, int n) { return (m > n) ? m : n; }
 
 int *add(int A[], int B[], int m, int n)
