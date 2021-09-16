@@ -54,7 +54,7 @@ int main()
     }
 
     else
-        cout << c3.getReal() << " " << c3.getimg() << "i" << endl;
+        cout << c3.getReal() << " + " << c3.getimg() << "i" << endl;
 
     return 0;
 }

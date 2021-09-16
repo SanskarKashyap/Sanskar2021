@@ -21,9 +21,9 @@ public:
 };
 int main()
 {
-    Rectangle r1(5, 4);
-    Rectangle r2(r1);
-    Rectangle r3;
+    Rectangle r1(5, 4); 
+    Rectangle r2(r1); 
+    Rectangle r3; 
     cout << r1.area() << endl;
     cout << r1.perimeter() << endl;
     cout << r2.area() << endl;

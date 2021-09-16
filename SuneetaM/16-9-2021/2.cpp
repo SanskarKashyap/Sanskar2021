@@ -21,19 +21,6 @@ class Test : public Student
 public:
     int A[5];
 };
-class Grade : public Test
-{
-public:
-    int tsum = 0;
-    void total (Test :: A)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            
-        }
-        
-    }
-};
 int main()
 {
     int roll, age;
