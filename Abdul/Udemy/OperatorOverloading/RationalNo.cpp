@@ -10,10 +10,16 @@ private:
 public:
     Rational(int, int);
     void display();
-    friend ostream &operator<<(ostream &out, Rational &r);
     int GCD(int q1, int q2);
     friend Rational operator+(Rational r1, Rational r2);
+    friend ostream &operator<<(ostream &out, Rational &r);
 };
+
+ostream &operator<<(ostream &out, Rational &r)
+{
+    out << r.Num << "/" << r.Den;
+    return out;
+}
 
 Rational::Rational(int n = 0, int d = 1)
 {
@@ -46,7 +52,7 @@ int Rational::GCD(int q1, int q2)
 void Rational::display()
 {
 
-    cout << Num << "/" << Den;
+    cout << Num << "/" << Den << endl;
 }
 
 int main()
@@ -55,5 +61,6 @@ int main()
     r3 = r1 + r2;
     r3.display();
     cout << r3;
+    cout << "\nSum of " << r1 << " + " << r2 << " is " << r3 << endl;
     return 0;
 }

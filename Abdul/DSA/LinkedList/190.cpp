@@ -21,6 +21,7 @@ void create(int *A, int n)
         last = t;
     }
 }
+
 void Display(node *p)
 {
     while (p)
@@ -30,6 +31,7 @@ void Display(node *p)
     }
     cout << endl;
 }
+
 void Insert(int x)
 {
     node *m, *t, *n;
@@ -61,6 +63,7 @@ void Insert(int x)
         }
     }
 }
+
 int main()
 {
     int A[] = {3, 5, 8, 14, 23, 45, 67};

@@ -1,0 +1,2 @@
+
+    second = new node;

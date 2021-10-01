@@ -46,6 +46,7 @@ int main()
     child c;
     c.funchild();
     // cout << c.b;             // as b is protected in parent class hence in child also it is protected
-    cout << c.c;                // if in child class parent is inharited in protected way ,, then the data goes to protected part only
+                                // if in child class parent is inharited in protected way ,, then the data goes to protected part only
+    cout << c.c;               
     return 0;
 }

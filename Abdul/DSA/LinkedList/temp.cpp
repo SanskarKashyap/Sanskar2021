@@ -1,80 +1,126 @@
 #include <iostream>
 using namespace std;
-
-struct node
+class Node
 {
+public:
     int data;
-    node *next;
-
-} * first;
-
-void create(int *A, int n)
+    Node *next;
+};
+class LinkedList
 {
-    node *t, *last;
-    first = new node;
+private:
+    Node *first;
+
+public:
+    LinkedList() { first = NULL; }
+    LinkedList(int A[], int n);
+    ~LinkedList();
+    void Display();
+    void Insert(int index, int x);
+    int Delete(int index);
+    int Length();
+};
+LinkedList::LinkedList(int A[], int n)
+{
+    Node *last, *t;
+    int i = 0;
+    first = new Node;
     first->data = A[0];
+    first->next = NULL;
     last = first;
-    for (int i = 1; i < n; i++)
+    for (i = 1; i < n; i++)
     {
-        t = new node;
+        t = new Node;
         t->data = A[i];
         t->next = NULL;
         last->next = t;
         last = t;
     }
 }
-
-void Display(node *d)
+LinkedList::~LinkedList()
 {
-    while (d)
+    Node *p = first;
+    while (first)
     {
-        cout << d->data << "\t";
-        d = d->next;
+        first = first->next;
+        delete p;
+        p = first;
+    }
+}
+void LinkedList::Display()
+{
+    Node *p = first;
+    while (p)
+    {
+        cout << p->data << " ";
+        p = p->next;
     }
     cout << endl;
 }
-
-void insert(int x)
+int LinkedList::Length()
 {
-    node *p, *t, *q;
-    p = first;
-
-    t = new node;
+    Node *p = first;
+    int len = 0;
+    while (p)
+    {
+        len++;
+        p = p->next;
+    }
+    return len;
+}
+void LinkedList::Insert(int index, int x)
+{
+    Node *t, *p = first;
+    if (index < 0 || index > Length())
+        return;
+    t = new Node;
     t->data = x;
     t->next = NULL;
-    if (first == NULL)
+    if (index == 0)
     {
+        t->next = first;
         first = t;
     }
     else
     {
-        while (p && p->data < x)
+        for (int i = 0; i < index - 1; i++)
+            p = p->next;
+        t->next = p->next;
+        p->next = t;
+    }
+}
+int LinkedList::Delete(int index)
+{
+    Node *p, *q = NULL;
+    int x = -1;
+    if (index < 1 || index > Length())
+        return -1;
+    if (index == 1)
+    {
+        p = first;
+        first = first->next;
+        x = p->data;
+        delete p;
+    }
+    else
+    {
+        p = first;
+        for (int i = 0; i < index - 1; i++)
         {
             q = p;
             p = p->next;
         }
-        if (p == first)
-        {
-            first = t;
-            t->next = first->next;
-        }
-        else
-        {
-            t->next = q->next;
-            q->next = t;
-        }
+        q->next = p->next;
+        x = p->data;
+        delete p;
     }
+    return x;
 }
-
 int main()
 {
-    int A[] = {3, 5, 7, 9, 13, 25, 56, 72};
-    create(A, 8);
-    Display(first);
-    insert(84);
-    insert(30);
-    insert(4);
-    insert(2);
-    Display(first);
+    int A[] = {1, 2, 3, 4, 5};
+    LinkedList l(A, 5);
+    l.Insert(3, 10);
+    l.Display();
     return 0;
 }
