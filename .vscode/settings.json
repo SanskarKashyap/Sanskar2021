@@ -7,6 +7,7 @@
         "stdio.h": "c",
         "iostream": "cpp",
         "vector": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "type_traits": "cpp"
     }
 }
