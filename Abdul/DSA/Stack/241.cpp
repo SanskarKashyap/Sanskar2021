@@ -1,4 +1,3 @@
-// sstack USIng linklist
 #include <iostream>
 using namespace std;
 
@@ -93,7 +92,11 @@ int Stack::isBalenc(char *exp)
             else
                 pop();
         }
+        else
+        {
+            //
         }
+    }
     return top == NULL ? 1 : 0;
 }
 

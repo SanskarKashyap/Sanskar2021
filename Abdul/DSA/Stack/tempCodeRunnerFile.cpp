@@ -1,53 +1,109 @@
 #include <iostream>
-#include <string>
 using namespace std;
-#include <stack>
-#include <cstring>
-bool isBalanced(string expression)
+ 
+class node
 {
-  stack<char> s;
-  int len = expression.length();
-  for (int i = 0; i < len; i++)
-  {
-    if (expression[i] == '(' || expression[i] == '{' || expression[i] == '[')
+public:
+    char data;
+    struct node *next;
+};
+ 
+class Stack
+{
+private:
+    node *top;
+ 
+public:
+    Stack() { top = NULL; };
+    void push(char x);
+    char pop();
+    void display();
+    int isEmpty();
+    int isBalenc(char *exp);
+};
+ 
+void Stack::push(char x)
+{
+    struct node *t;
+    t = new node;
+    if (t == NULL)
     {
-      s.push(expression[i]);
+        cout << "\nStack Overflow\n";
     }
-    else if (expression[i] == ')' || expression[i] == '}' || expression[i] == ']')
+    else
     {
-      if (s.empty())
-      {
-        return false;
-      }
-      char ch = s.top();
-      s.pop();
-      if (expression[i] == '(' && ch == ')')
-      {
-        continue;
-      }
-      else if (expression[i] == '{' && ch == '}')
-      {
-        continue;
-      }
-      else if (expression[i] == '[' && ch == ']')
-      {
-        continue;
-      }
+        t->data = x;
+        t->next = top;
+        top = t;
     }
-  }
-  if (s.empty())
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
 }
-
+ 
+char Stack::pop()
+{
+    struct node *t;
+    int x = -1;
+    if (top == NULL)
+    {
+        cout << "\nStack is Empty \n";
+    }
+    else
+    {
+        t = top;
+        x = t->data;
+        top = top->next;
+        free(t);
+    }
+    return x;
+}
+ 
+void Stack::display()
+{
+    node *k = top;
+    while (k)
+    {
+        cout << k->data << " ";
+        k = k->next;
+    }
+}
+ 
+int Stack::isEmpty()
+{
+    if (top == NULL)
+    {
+        return true;
+    }
+    else
+        return false;
+}
+ 
+int Stack::isBalenc(char *exp)
+{
+ 
+    for (int i = 0; exp[i] != '\0'; i++)
+    {
+        if (exp[i] == '(')
+        {
+            push(exp[i]);
+        }
+        else if (exp[i] == ')') //changes
+        {
+            if (top == NULL)
+                return false;
+            else
+                pop();
+        }
+        else
+        {
+            // cout << exp[i] << " ";  //not needed
+        }
+    }
+    return top == NULL ? 1 : 0;
+}
+ 
 int main()
 {
-  string input;
-  cin >> input;
-  cout << ((isBalanced(input)) ? "true" : "false");
+    class Stack st;
+    char exp[] = {"((a+b+c)*(c+d)*t)"};
+    cout << st.isBalenc(exp);
+    return 0;
 }
