@@ -45,6 +45,7 @@ int main()
 {
     int A[] = {3, 5, 8, 14, 3, 45, 67};
     create1(A, 7);
-    RDisplay(head);
+    // RDisplay(head);
+    Display(head);
     return 0;
 }

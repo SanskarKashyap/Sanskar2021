@@ -1,32 +1,30 @@
 #include <iostream>
-#include <stdio.h>
 using namespace std;
-struct Student
+class A
 {
-    char name[30];
-    int roll;
-    float m[5];
+public:
+    A()
+    {
+        cout << "In class A\n";
+    }
 };
-
+class B
+{
+public:
+    {
+        cout << "In class B\n";
+    }
+};
+class C : public B, public A
+{
+public:
+    C() : A(), B()
+    {
+        cout << "In class C\n";
+    }
+};
 int main()
 {
-    Student s1;
-    printf(" Enter Your Name ");
-    scanf("%s", &s1.name);
-    printf(" Enter Your Roll ");
-    scanf("%d", &s1.roll);
-    printf(" Enter Your Marks ");
-
-    for (int i = 0; i < 5; i++)
-    {
-        scanf("%f", &s1.m[i]);
-    }
-    cout <<" Name : "<< s1.name<<endl ;
-    cout <<" Roll : "<< s1.roll<<endl;
-    for (int i = 0; i < 5; i++)
-    {
-        cout <<" Marks"<<i<<" :"<< s1.m[i]<<" ";
-    }
-
+    C C1;
     return 0;
 }

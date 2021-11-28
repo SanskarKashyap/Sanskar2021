@@ -85,7 +85,7 @@ int Stack::isBalenc(char *exp)
         {
             push(exp[i]);
         }
-        else if (exp[i] = ')')
+        else if (exp[i] == ')')
         {
             if (top == NULL)
                 return false;
