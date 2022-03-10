@@ -1,36 +1,51 @@
-#include <bits/stdc++.h>
+// start
 
-using namespace std;
-int main()
-{
-    vector<int> grades;
-    vector<int> gradesUP;
+// function to swap elements
 
-    grades.push_back(5);
-    grades.push_back(43);
-    grades.push_back(72);
-    grades.push_back(64);
+// function to find the partition position
+// int partition(int array[], int low, int high)
 
-    for (int i = 0; i < grades.size(); i++)
-    {
-        if (grades[i] > 37)
-        {
-            if (grades[i] % 5 >= 3)
-            {
-                int a, b;
-                a = grades[i] / 5;
-                b = (a + 1) * 5;
-                gradesUP.push_back(b);
-            }
-            else
-            gradesUP.push_back(grades[i]);
+// select the rightmost element as pivot
 
-        }
-    }
-    for (int i = 0; i < gradesUP.size() ; i++)
-    {
-        cout<<gradesUP[i]<<endl ;
-    }
-    
-    return 0;
-}
+// pointer for greater element
+
+// traverse each element of the array
+// compare them with the pivot
+
+// if element smaller than pivot is found
+// swap it with the greater element pointed by i
+
+// swap element at i with element at j
+
+// swap the pivot element with the greater element at i
+
+// return the partition point
+
+// void quickSort(int array[], int low, int high) {
+//  if (low < high) {
+
+// find the pivot element such that
+// elements smaller than pivot are on left of pivot
+// elements greater than pivot are on right of pivot
+//  int pi = partition(array, low, high);
+
+// recursive call on the left of pivot
+// quickSort(array, low, pi - 1);
+
+// recursive call on the right of pivot
+// quickSort(array, pi + 1, high);
+
+// function to print array elements
+
+// main function
+// int main() {
+
+// inisialize arr[]= {2,5,20,34,13,19,7}
+
+// int n = sizeof(data) / sizeof(data[0]);
+
+// perform quicksort on data
+
+// Sorted array in ascending order: ;
+// return 0
+// end

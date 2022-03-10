@@ -57,6 +57,7 @@ int main()
     enqueue(&q, 15);
     enqueue(&q, 25);
     enqueue(&q, 35);
+     Display(&q);
     Dequeue(&q);
     Dequeue(&q);
     Dequeue(&q);
